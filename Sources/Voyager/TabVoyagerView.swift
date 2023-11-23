@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TabRouterView<T: Hashable & Identifiable, Content: View, TabItem: View>: View {
+struct TabVoyagerView<T: Hashable & Identifiable, Content: View, TabItem: View>: View {
     
     @ObservedObject var router: TabRouter<T>
     @ViewBuilder var content: (T) -> Content
@@ -9,7 +9,7 @@ struct TabRouterView<T: Hashable & Identifiable, Content: View, TabItem: View>: 
     var body: some View {
         TabView(selection: $router.selected) {
             ForEach(router.tabs) { tab in
-                NavigationRouterView(router: getRouter(for: tab)) { route in
+                NavVoyagerView(router: getRouter(for: tab)) { route in
                     content(route)
                 }
                 .tabItem {
