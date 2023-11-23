@@ -5,6 +5,11 @@ public struct NavVoyagerView<T: Hashable & Identifiable, Content: View>: View {
     @ObservedObject var router: Router<T>
     @ViewBuilder var content: (T) -> Content
     
+    public init(router: Router<T>, content: @escaping (T) -> Content) {
+        self.router = router
+        self.content = content
+    }
+    
     public var body: some View {
         NavigationStack(path: $router.routes) {
             content(router.root)
