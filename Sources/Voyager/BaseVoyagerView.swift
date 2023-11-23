@@ -25,6 +25,9 @@ public struct BaseVoyagerView<T: Route, Content: View>: View {
             } content: { route in
                 content(route)
             }
+            .popover(item: $router.popover) { route in
+                content(route)
+            }
             .environmentObject(router)
     }
 }

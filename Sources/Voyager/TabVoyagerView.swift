@@ -24,13 +24,7 @@ public struct TabVoyagerView<T: Route, Content: View, TabItem: View>: View {
                 }
                 .tabItem {
                     tabItem(tab)
-                        .onTapGesture {
-                            let generator = UIImpactFeedbackGenerator(style: .light)
-                            generator.impactOccurred()
-                        }
                 }
-                .toolbar(.visible, for: .tabBar)
-                .toolbarBackground(Color(uiColor: .systemBackground), for: .tabBar)
             }
         }
         .environmentObject(router)

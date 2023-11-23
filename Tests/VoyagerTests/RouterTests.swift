@@ -1,11 +1,4 @@
-//
-//  RouterTests.swift
-//  
-//
-//  Created by Bryan Van Horn on 11/23/23.
-//
-
-import Voyager
+@testable import Voyager
 import XCTest
 
 final class RouterTests: XCTestCase {

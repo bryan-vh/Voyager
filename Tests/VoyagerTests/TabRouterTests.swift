@@ -1,11 +1,4 @@
-//
-//  TabRouterTests.swift
-//  
-//
-//  Created by Bryan Van Horn on 11/23/23.
-//
-
-import Voyager
+@testable import Voyager
 import XCTest
 
 final class TabRouterTests: XCTestCase {
@@ -25,7 +18,7 @@ final class TabRouterTests: XCTestCase {
     
     func test_router_updateCurrentTab() {
         XCTAssertEqual(router.selected, .route1)
-        router.updateCurrentTab(.route2)
+        router.updateSelectedTab(.route2)
         XCTAssertEqual(router.selected, .route2)
     }
 
