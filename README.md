@@ -34,7 +34,7 @@ To start off, create an enum that will represent your set of routes. These can b
 
 ### `BaseVoyagerView`
 ```swift
-@StateObject var router = Router<Route>(root: .route1)
+@StateObject var router = Router<ExampleRoute>(root: .route1)
 
 BaseVoyagerView(router: router) { route in
   switch route {
@@ -45,11 +45,11 @@ BaseVoyagerView(router: router) { route in
 }
 ```
 
-The simplest of all Voyager views. For those views that don't need navigation or tabs. If you do need navigation or tabs, use the corresponding VoyagerView below.
+The simplest of all Voyager views. Use when you don't need navigation or tabs. If you do need navigation or tabs, use the corresponding Voyager view below.
 
 ### `NavVoyagerView`
 ```swift
-@StateObject var router = Router<Route>(root: .route1)
+@StateObject var router = Router<ExampleRoute>(root: .route1)
 
 NavVoyagerView(router: router) { route in
   switch route {
@@ -64,7 +64,7 @@ NavVoyagerView uses NavigationStack under the hood so you are able to use Naviga
 
 ### `TabVoyagerView`
 ```swift
-@StateObject var router = Router<Route>(root: .route1)
+@StateObject var router = Router<ExampleRoute>(root: .route1)
 
 TabVoyagerView(router: router) { route in
   switch route {
