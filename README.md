@@ -20,6 +20,18 @@ import Voyager
 
 ## Usage
 
+### `Route`
+```swift
+enum ExampleRoute: Route {
+  case route1
+  case route2
+  case route3(String)
+  case route4(Int)
+}
+```
+
+To start off, create an enum that will represent your set of routes. These can be parameterized by using Swift's enum with associated values.
+
 ### `BaseVoyagerView`
 ```swift
 @StateObject var router = Router<Route>(root: .route1)
@@ -35,8 +47,6 @@ BaseVoyagerView(router: router) { route in
 
 The simplest of all Voyager views. For those views that don't need navigation or tabs. If you do need navigation or tabs, use the corresponding VoyagerView below.
 
-<br>
-
 ### `NavVoyagerView`
 ```swift
 @StateObject var router = Router<Route>(root: .route1)
@@ -50,7 +60,7 @@ NavVoyagerView(router: router) { route in
 }
 ```
 
-<br>
+NavVoyagerView uses NavigationStack under the hood so you are able to use NavigationLink views as needed in child views.
 
 ### `TabVoyagerView`
 ```swift
@@ -67,14 +77,19 @@ TabVoyagerView(router: router) { route in
 }
 ```
 
-<br>
+TabVoyagerView uses a TabView with an array of NavVoyagerViews under the hood, so navigation works for each tab separately.
 
-### `Route`
+### `Router`
 ```swift
 struct Route1View: View {
 
-  @EnvironmentObject var router: Router<Route>
+  @EnvironmentObject var router: Router<ExampleRoute>
 
   // You can then use the router to push, pop, present modals, or dismiss views as needed.
 }
 ```
+
+You can access a router in any child view of the parent Voyager view.
+
+## License
+[MIT License](LICENSE)
