@@ -2,11 +2,15 @@ import SwiftUI
 
 public struct TabVoyagerView<T: Hashable & Identifiable, Content: View, TabItem: View>: View {
     
-    @ObservedObject var router: TabRouter<T>
-    @ViewBuilder var content: (T) -> Content
-    @ViewBuilder var tabItem: (T) -> TabItem
+    @ObservedObject private var router: TabRouter<T>
+    private let content: (T) -> Content
+    private let tabItem: (T) -> TabItem
     
-    public init(router: TabRouter<T>, content: @escaping (T) -> Content, tabItem: @escaping (T) -> TabItem) {
+    public init(
+        router: TabRouter<T>,
+        @ViewBuilder content: @escaping (T) -> Content,
+        @ViewBuilder tabItem: @escaping (T) -> TabItem
+    ) {
         self.router = router
         self.content = content
         self.tabItem = tabItem

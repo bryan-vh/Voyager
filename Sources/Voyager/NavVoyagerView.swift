@@ -2,10 +2,13 @@ import SwiftUI
 
 public struct NavVoyagerView<T: Hashable & Identifiable, Content: View>: View {
     
-    @ObservedObject var router: Router<T>
-    @ViewBuilder var content: (T) -> Content
+    @ObservedObject private var router: Router<T>
+    private let content: (T) -> Content
     
-    public init(router: Router<T>, content: @escaping (T) -> Content) {
+    public init(
+        router: Router<T>,
+        @ViewBuilder content: @escaping (T) -> Content
+    ) {
         self.router = router
         self.content = content
     }
