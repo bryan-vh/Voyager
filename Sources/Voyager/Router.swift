@@ -9,7 +9,7 @@ public class Router<T: Hashable & Identifiable>: ObservableObject {
     @Published var popover: T?
     @Published var onDismiss: (() -> Void)?
     
-    init(root: T) {
+    public init(root: T) {
         self.root = root
         self.routes = []
     }

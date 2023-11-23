@@ -1,12 +1,12 @@
 import SwiftUI
 
-struct TabVoyagerView<T: Hashable & Identifiable, Content: View, TabItem: View>: View {
+public struct TabVoyagerView<T: Hashable & Identifiable, Content: View, TabItem: View>: View {
     
     @ObservedObject var router: TabRouter<T>
     @ViewBuilder var content: (T) -> Content
     @ViewBuilder var tabItem: (T) -> TabItem
     
-    var body: some View {
+    public var body: some View {
         TabView(selection: $router.selected) {
             ForEach(router.tabs) { tab in
                 NavVoyagerView(router: getRouter(for: tab)) { route in
