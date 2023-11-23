@@ -1,6 +1,6 @@
 import SwiftUI
 
-public struct TabVoyagerView<T: Hashable & Identifiable, Content: View, TabItem: View>: View {
+public struct TabVoyagerView<T: Route, Content: View, TabItem: View>: View {
     
     @ObservedObject private var router: TabRouter<T>
     private let content: (T) -> Content

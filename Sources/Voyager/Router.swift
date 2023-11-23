@@ -1,13 +1,13 @@
 import Foundation
 
-public class Router<T: Hashable & Identifiable>: ObservableObject {
+public class Router<T: Route>: ObservableObject {
     
-    @Published var root: T
-    @Published var routes: [T]
-    @Published var sheet: T?
-    @Published var fullscreenCover: T?
-    @Published var popover: T?
-    @Published var onDismiss: (() -> Void)?
+    @Published public var root: T
+    @Published public var routes: [T]
+    @Published public var sheet: T?
+    @Published public var fullscreenCover: T?
+    @Published public var popover: T?
+    @Published public var onDismiss: (() -> Void)?
     
     public init(root: T) {
         self.root = root
