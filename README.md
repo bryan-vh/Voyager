@@ -1,6 +1,6 @@
 <img src="https://images.ctfassets.net/ooa29xqb8tix/6MFFWO1k38yxTrLKRZ26e8/2c07fa6c2c4653bfae00dd87625d6e56/swift-logo.png?w=400&q=50" alt="Voyager" width="200">
 
-> Framework for navigation & routing in SwiftUI
+> Lightweight framework for navigation & routing in SwiftUI
 
 # Voyager
 
