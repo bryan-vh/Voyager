@@ -64,7 +64,7 @@ NavVoyagerView uses NavigationStack under the hood so you are able to use Naviga
 
 ### `TabVoyagerView`
 ```swift
-@StateObject var router = Router<ExampleRoute>(root: .route1)
+@StateObject var router = TabRouter<ExampleRoute>(tabs: [.route1, .route2], selected: .route1)
 
 TabVoyagerView(router: router) { route in
   switch route {
