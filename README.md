@@ -85,11 +85,24 @@ struct Route1View: View {
 
   @EnvironmentObject var router: Router<ExampleRoute>
 
-  // You can then use the router to push, pop, present modals, or dismiss views as needed.
+  // You can then use the router to push, pop, present modals, or dismiss as needed.
 }
 ```
 
 You can access a router in any child view of the parent Voyager view.
+
+### `DeeplinkHandler`
+```swift
+final class ExampleDeeplinkHandler: DeeplinkHandler<ExampleRoute> {
+
+  override func handleDeeplink(url: URL) -> (ExampleRoute, PresentationOption)? {
+    // Transform the deeplink into a route with a given presentation option.
+  }
+}
+```
+
+By injecting a route-specific **DeeplinkHandler** into a **Router**, you will be able to
+handle any deeplinks that would present some route from that router.
 
 ## License
 [MIT License](LICENSE)
