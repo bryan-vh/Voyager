@@ -29,5 +29,8 @@ public struct BaseVoyagerView<T: Route, Content: View>: View {
                 content(route)
             }
             .environmentObject(router)
+            .onOpenURL { url in
+                router.handleDeeplink(url: url)
+            }
     }
 }
