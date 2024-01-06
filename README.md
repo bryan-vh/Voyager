@@ -1,3 +1,6 @@
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fbryan-vh%2FVoyager%2Fbadge%3Ftype%3Dswift-versions)](https://swiftpackageindex.com/bryan-vh/Voyager)
+[![](https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fbryan-vh%2FVoyager%2Fbadge%3Ftype%3Dplatforms)](https://swiftpackageindex.com/bryan-vh/Voyager)
+
 <img src="https://images.ctfassets.net/ooa29xqb8tix/6MFFWO1k38yxTrLKRZ26e8/2c07fa6c2c4653bfae00dd87625d6e56/swift-logo.png?w=400&q=50" alt="Voyager" width="200">
 
 > Lightweight framework for navigation & routing in SwiftUI
