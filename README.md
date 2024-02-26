@@ -23,7 +23,7 @@ import Voyager
 
 ## Usage
 
-### `Route`
+### Route
 ```swift
 enum ExampleRoute: Route {
   case route1
@@ -35,7 +35,7 @@ enum ExampleRoute: Route {
 
 To start off, create an enum that will represent your set of routes. These can be parameterized by using Swift's enum with associated values.
 
-### `BaseVoyagerView`
+### BaseVoyagerView
 ```swift
 @StateObject var router = Router<ExampleRoute>(root: .route1)
 
@@ -50,7 +50,7 @@ BaseVoyagerView(router: router) { route in
 
 The simplest of all Voyager views. Use when you don't need navigation or tabs. If you do need navigation or tabs, use the corresponding Voyager view below.
 
-### `NavVoyagerView`
+### NavVoyagerView
 ```swift
 @StateObject var router = Router<ExampleRoute>(root: .route1)
 
@@ -65,7 +65,7 @@ NavVoyagerView(router: router) { route in
 
 NavVoyagerView uses NavigationStack under the hood so you are able to use NavigationLink views as needed in child views.
 
-### `TabVoyagerView`
+### TabVoyagerView
 ```swift
 @StateObject var router = TabRouter<ExampleRoute>(tabs: [.route1, .route2], selected: .route1)
 
@@ -82,7 +82,7 @@ TabVoyagerView(router: router) { route in
 
 TabVoyagerView uses a TabView with an array of NavVoyagerViews under the hood, so navigation works for each tab separately.
 
-### `Router`
+### Router
 ```swift
 struct Route1View: View {
 
@@ -94,7 +94,7 @@ struct Route1View: View {
 
 You can access a router in any child view of the parent Voyager view.
 
-### `DeeplinkHandler`
+### DeeplinkHandler
 ```swift
 final class ExampleDeeplinkHandler: DeeplinkHandler<ExampleRoute> {
 

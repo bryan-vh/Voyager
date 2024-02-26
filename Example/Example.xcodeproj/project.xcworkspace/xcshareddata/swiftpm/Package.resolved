@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "voyager",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bryan-vh/Voyager",
+      "state" : {
+        "revision" : "a3e33156a448d070e32100c1bcbd45f79201e325",
+        "version" : "1.2.0"
+      }
+    }
+  ],
+  "version" : 2
+}
