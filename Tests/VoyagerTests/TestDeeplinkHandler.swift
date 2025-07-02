@@ -1,9 +1,9 @@
 import Foundation
 import Voyager
 
-final class TestDeeplinkHandler: DeeplinkHandler<TestRoute> {
+final class TestDeeplinkHandler: DeeplinkHandler {
     
-    override func handleDeeplink(url: URL) -> (TestRoute, PresentationOption)? {
+    func handleDeeplink(url: URL) -> (TestRoute, PresentationOption)? {
         return (.route1, .sheet)
     }
 }
