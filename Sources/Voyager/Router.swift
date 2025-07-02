@@ -11,11 +11,11 @@ public class Router<T: Route>: ObservableObject {
     @Published var popover: T?
     
     var onDismiss: (() -> Void)?
-    var deeplinkHandler: DeeplinkHandler<T>?
+    var deeplinkHandler: (any DeeplinkHandler)?
     
     // MARK: - Initializer
     
-    public init(root: T, deeplinkHandler: DeeplinkHandler<T>? = nil) {
+    public init(root: T, deeplinkHandler: (any DeeplinkHandler)? = nil) {
         self.root = root
         self.routes = []
         self.deeplinkHandler = deeplinkHandler
@@ -65,7 +65,7 @@ public class Router<T: Route>: ObservableObject {
     }
     
     public func handleDeeplink(url: URL) {
-        if let (route, option) = deeplinkHandler?.handleDeeplink(url: url) {
+        if let (route, option) = deeplinkHandler?.handleDeeplink(url: url) as? (T, PresentationOption) {
             present(route, option: option)
         }
     }

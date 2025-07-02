@@ -15,7 +15,10 @@ enum ExampleRoute: Route {
 
 struct ContentView: View {
     
-    @StateObject var router = Router<ExampleRoute>(root: .route1)
+    @StateObject var router = Router<ExampleRoute>(
+        root: .route1,
+        deeplinkHandler: ExampleRouteDeeplinkHandler()
+    )
     
     var body: some View {
         NavVoyagerView(router: router) { (route: ExampleRoute) in
@@ -26,6 +29,13 @@ struct ContentView: View {
                 Route2View()
             }
         }
+    }
+}
+
+struct ExampleRouteDeeplinkHandler: DeeplinkHandler {
+    
+    func handleDeeplink(url: URL) -> (ExampleRoute, PresentationOption)? {
+        return nil
     }
 }
 
