@@ -2,8 +2,8 @@ import Foundation
 
 public class TabRouter<T: Route>: ObservableObject {
     
-    @Published var tabs: [T]
-    @Published var selected: T
+    @Published public var tabs: [T]
+    @Published public var selected: T
     @Published var routers: [Router<T>]
     
     public init(tabs: [T], selected: T, deeplinkHandler: (any DeeplinkHandler)? = nil) {

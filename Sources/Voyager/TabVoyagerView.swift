@@ -1,33 +1,50 @@
 import SwiftUI
 
-public struct TabVoyagerView<T: Route, Content: View, TabItem: View>: View {
+public struct TabVoyagerView<T: Route, Content: View, TabItem: View, TabBar: View>: View {
     
     @ObservedObject private var router: TabRouter<T>
     private let content: (T) -> Content
     private let tabItem: (T) -> TabItem
+    private let shouldUseCustomTabBar: Bool
+    private let tabBar: () -> TabBar
     
     public init(
         router: TabRouter<T>,
+        shouldUseCustomTabBar: Bool = false,
         @ViewBuilder content: @escaping (T) -> Content,
-        @ViewBuilder tabItem: @escaping (T) -> TabItem
+        @ViewBuilder tabItem: @escaping (T) -> TabItem,
+        @ViewBuilder tabBar: @escaping () -> TabBar
     ) {
         self.router = router
+        self.shouldUseCustomTabBar = shouldUseCustomTabBar
         self.content = content
         self.tabItem = tabItem
+        self.tabBar = tabBar
     }
     
     public var body: some View {
-        TabView(selection: $router.selected) {
-            ForEach(router.tabs) { tab in
-                NavVoyagerView(router: getRouter(for: tab)) { route in
-                    content(route)
+        ZStack {
+            TabView(selection: $router.selected) {
+                ForEach(router.tabs) { tab in
+                    NavVoyagerView(router: getRouter(for: tab)) { route in
+                        content(route)
+                    }
+                    .tabItem {
+                        tabItem(tab)
+                    }
                 }
-                .tabItem {
-                    tabItem(tab)
+            }
+            .environmentObject(router)
+            .toolbar(shouldUseCustomTabBar ? .visible : .hidden, for: .tabBar)
+            .ignoresSafeArea(edges: shouldUseCustomTabBar ? [.bottom] : [])
+            
+            if shouldUseCustomTabBar {
+                VStack {
+                    Spacer()
+                    tabBar()
                 }
             }
         }
-        .environmentObject(router)
     }
     
     private func getRouter(for tab: T) -> Router<T> {
