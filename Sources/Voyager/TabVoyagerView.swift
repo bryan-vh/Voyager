@@ -28,6 +28,7 @@ public struct TabVoyagerView<T: Route, Content: View, TabItem: View, TabBar: Vie
                 ForEach(router.tabs) { tab in
                     NavVoyagerView(router: getRouter(for: tab)) { route in
                         content(route)
+                            .toolbar(shouldUseCustomTabBar ? .hidden : .visible, for: .tabBar)
                     }
                     .tabItem {
                         tabItem(tab)
@@ -35,7 +36,6 @@ public struct TabVoyagerView<T: Route, Content: View, TabItem: View, TabBar: Vie
                 }
             }
             .environmentObject(router)
-            .toolbar(shouldUseCustomTabBar ? .hidden : .visible, for: .tabBar)
             .ignoresSafeArea(edges: shouldUseCustomTabBar ? [.bottom] : [])
             
             if shouldUseCustomTabBar {
