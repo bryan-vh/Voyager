@@ -13,7 +13,7 @@ public struct TabVoyagerView<T: Route, Content: View, TabItem: View, TabBar: Vie
         shouldUseCustomTabBar: Bool = false,
         @ViewBuilder content: @escaping (T) -> Content,
         @ViewBuilder tabItem: @escaping (T) -> TabItem,
-        @ViewBuilder tabBar: @escaping () -> TabBar
+        @ViewBuilder tabBar: @escaping () -> TabBar = { EmptyView() }
     ) {
         self.router = router
         self.shouldUseCustomTabBar = shouldUseCustomTabBar
@@ -35,7 +35,7 @@ public struct TabVoyagerView<T: Route, Content: View, TabItem: View, TabBar: Vie
                 }
             }
             .environmentObject(router)
-            .toolbar(shouldUseCustomTabBar ? .visible : .hidden, for: .tabBar)
+            .toolbar(shouldUseCustomTabBar ? .hidden : .visible, for: .tabBar)
             .ignoresSafeArea(edges: shouldUseCustomTabBar ? [.bottom] : [])
             
             if shouldUseCustomTabBar {
