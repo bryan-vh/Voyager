@@ -2,11 +2,16 @@ import SwiftUI
 
 public struct TabVoyagerView<T: Route, Content: View, TabItem: View, TabBar: View>: View {
     
-    @ObservedObject private var router: TabRouter<T>
+    @ObservedObject
+    private var router: TabRouter<T>
+    
     private let content: (T) -> Content
     private let tabItem: (T) -> TabItem
     private let shouldUseCustomTabBar: Bool
     private let tabBar: () -> TabBar
+    
+    @State
+    private var customTabBarHeight: CGFloat = 0
     
     public init(
         router: TabRouter<T>,
@@ -36,15 +41,26 @@ public struct TabVoyagerView<T: Route, Content: View, TabItem: View, TabBar: Vie
                 }
             }
             .environmentObject(router)
-            .ignoresSafeArea(edges: shouldUseCustomTabBar ? [.bottom] : [])
+            .safeAreaInset(edge: .bottom) {
+                Color.clear.frame(height: customTabBarHeight)
+            }
             
             if shouldUseCustomTabBar {
-                VStack {
+                VStack(spacing: 0) {
                     Spacer()
                     tabBar()
+                        .onGeometryChange(for: CGSize.self) { proxy in
+                            proxy.size
+                        } action: { newValue in
+                            updateTabBarHeight(newValue.height)
+                        }
                 }
             }
         }
+    }
+    
+    private func updateTabBarHeight(_ height: CGFloat) {
+        customTabBarHeight = height
     }
     
     private func getRouter(for tab: T) -> Router<T> {

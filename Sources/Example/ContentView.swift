@@ -15,19 +15,18 @@ enum ExampleRoute: Route {
 
 struct ContentView: View {
     
-    @StateObject var router = Router<ExampleRoute>(
-        root: .route1,
-        deeplinkHandler: ExampleRouteDeeplinkHandler()
-    )
+    @State var router = TabRouter<ExampleRoute>(tabs: [.route1, .route2],
+                                                selected: .route1,
+                                                deeplinkHandler: ExampleRouteDeeplinkHandler())
     
     var body: some View {
-        NavVoyagerView(router: router) { (route: ExampleRoute) in
+        TabVoyagerView(router: router) { route in
             switch route {
-            case .route1:
-                Route1View()
-            case .route2:
-                Route2View()
+            case .route1: Route1View()
+            case .route2: Route2View()
             }
+        } tabItem: { route in
+            EmptyView()
         }
     }
 }
